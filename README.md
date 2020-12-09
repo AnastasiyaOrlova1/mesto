@@ -12,5 +12,5 @@
 5. Java Script
 
 **Ссылка на сайт**
-[https://anastasiyaorlova1.github.io/russian-travel/]
+[https://anastasiyaorlova1.github.io/mesto/index.html]
 
