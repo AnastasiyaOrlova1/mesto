@@ -1,0 +1,11 @@
+.profile__add-button {
+    padding: 0;
+    border: 0;
+    background-color: #000000;
+    justify-self: center;
+}
+
+.profile__add-button:hover {
+opacity: .8;
+}
+

@@ -1,0 +1,16 @@
+.profile__info {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+    margin-bottom: 36px;
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    .profile__info {
+    margin-right: 244px;
+    margin-left: 30px;
+    }
+}

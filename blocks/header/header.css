@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #000000;
+    margin-top: 0;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .header {
+        padding-top: 45px;
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}

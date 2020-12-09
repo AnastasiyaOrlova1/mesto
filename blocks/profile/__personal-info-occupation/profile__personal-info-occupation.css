@@ -1,0 +1,18 @@
+.profile__personal-info-occupation {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 1280px) {
+    .profile__personal-info-occupation {
+       font-size: 18px;
+       margin-top: 16px;
+       text-align: left;
+    }
+}

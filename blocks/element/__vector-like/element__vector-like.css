@@ -1,0 +1,7 @@
+.element__vector-like {
+    margin-right: 15px;
+}
+
+.element__vector-like:hover {
+ opacity: .5;
+}
