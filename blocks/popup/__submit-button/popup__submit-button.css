@@ -6,23 +6,23 @@
     height: 46px;
     margin-left: 22px;
     margin-right: 22px;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
     border: none;
+}
+
+.popup__submit-button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (min-width: 1200px) {
+    .popup__submit-button {
+        margin-left: 36px;
+        margin-right: 36px;
+        width: 358px;
     }
-    
-    .popup__submit-button:hover {
-        opacity: .8;
-    }
-    
-    @media screen and (min-width: 1200px) {
-        .popup__submit-button {
-          margin-left: 36px;
-          margin-right: 36px;
-          width:358px;
-        }
-    }
+}

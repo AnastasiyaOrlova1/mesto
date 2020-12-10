@@ -1,17 +1,12 @@
 .element {
-      
     /*background-image: url(./images/Rectangle.svg);*/
     background-color: #000000;
     background-repeat: no-repeat;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-  
-
 }
 
-
-
 .element:first-of-type {
-      margin-top: 0px;
+    margin-top: 0px;
 }

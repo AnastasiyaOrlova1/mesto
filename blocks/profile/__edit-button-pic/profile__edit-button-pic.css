@@ -3,11 +3,9 @@
     padding: 0;
 }
 
-
 @media screen and (min-width: 800px) {
-    .profile__edit-button-pic{
+    .profile__edit-button-pic {
         height: 24px;
         width: 24px;
-        
     }
 }

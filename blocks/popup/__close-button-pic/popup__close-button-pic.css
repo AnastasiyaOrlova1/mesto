@@ -1,14 +1,11 @@
-
 .popup__close-button-pic {
     width: 26px;
     height: 26px;
-    }
-   
-    
-    @media screen and (min-width: 1280px) {
-        .popup__close-button-pic {
-            height: 40px;
-            width: 40px;
-        }
-    }
+}
 
+@media screen and (min-width: 1280px) {
+    .popup__close-button-pic {
+        height: 40px;
+        width: 40px;
+    }
+}

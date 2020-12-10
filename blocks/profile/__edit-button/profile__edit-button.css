@@ -6,14 +6,13 @@
     margin-top: 8px;
     border: none;
     padding: 0;
- }
- 
- .profile__edit-button:hover {
-     opacity: .8;
- }
+}
 
- 
- @media screen and (min-width: 800px) {
+.profile__edit-button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (min-width: 800px) {
     .profile__edit-button {
         margin-left: 18px;
         margin-top: 15px;
