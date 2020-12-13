@@ -2,10 +2,14 @@
     position: absolute;
     height: 26px;
     width: 26px;
-    top: -30px;
-    right: 0;
     background-color: transparent;
     border: none;
+    background-image: url("../../../images/closepopupicon.svg");
+    padding: 0;
+    background-size: cover;
+    position: absolute;
+    top: -30px;
+    right: 0;
     z-index: 2;
 }
 
@@ -15,9 +19,9 @@
 
 @media screen and (min-width: 800px) {
     .popup__close-button {
-        height: 40px;
-        width: 40px;
-        right: -30px;
-        top: -40px;
+        height: 58px;
+        width: 58px;
+        top: -50px;
+        right: -8%;
     }
 }

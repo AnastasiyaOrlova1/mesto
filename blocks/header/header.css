@@ -4,6 +4,7 @@
     justify-content: flex-start;
     background-color: #000000;
     margin-top: 0;
+    border-bottom: rgba(84, 84, 84, .7) 1px solid;
 }
 
 @media screen and (min-width: 1200px) {
