@@ -7,7 +7,6 @@
     background-image: url("../../../images/closepopupicon.svg");
     padding: 0;
     background-size: cover;
-    position: absolute;
     top: -30px;
     right: 0;
     z-index: 2;

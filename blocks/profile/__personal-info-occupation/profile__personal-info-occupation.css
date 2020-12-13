@@ -7,10 +7,9 @@
     margin-top: 7px;
     margin-bottom: 0;
     max-width: 159px;
-    text-align: center;
-   margin-left: auto;
-   margin-right: auto;
-   text-overflow: ellipsis;
+    margin-left: auto;
+    margin-right: auto;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
