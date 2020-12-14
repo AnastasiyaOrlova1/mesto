@@ -4,14 +4,13 @@ const closeButtonNode = document.querySelector('.popup__close-button');
 let profileNameNode = document.querySelector('.profile__personal-info-name');
 let profileOccupationNode = document.querySelector('.profile__personal-info-occupation');
 const popupFormNode = document.querySelector('.popup__form');
-const popupFormFieldNode = document.querySelectorAll('.popup__form-field');
-let popupFormFieldNameNode = document.querySelector('.popup__form-field_name');
-let popupFormFieldOccupationNode = document.querySelector('.popup__form-field_occupation');
+let popupFormFieldNameNode = document.querySelector('.popup__form-field_type_name');
+let popupFormFieldOccupationNode = document.querySelector('.popup__form-field_type_occupation');
 
 function handleEditButtonNode() {
     popupNode.classList.add ('popup_visible'); //сделать окно попап видимым, добавив ему класс, меняющий display:none на display:flex
-    popupFormFieldNameNode.textContent = profileNameNode.value; //присвоение полям формы значения имени в профиле
-    popupFormFieldOccupationNode = profileOccupationNode.value; //присвоение полям формы значения рода занятия в профиле
+    popupFormFieldNameNode.value = profileNameNode.textContent; //присвоение полям формы значения имени в профиле
+    popupFormFieldOccupationNode.value = profileOccupationNode.textContent; //присвоение полям формы значения рода занятия в профиле
 }
 
 function handleCloseButtonNode() {

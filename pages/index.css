@@ -1,4 +1,5 @@
 @import url("../vendor/normalize/normalize.css");
+@import url('../blocks/body/body.css');
 @import url("../vendor/fonts/fonts.css");
 @import url("../blocks/page/page.css");
 @import url("../blocks/header/header.css");
@@ -26,7 +27,7 @@
 @import url("../blocks/popup/__close-button/popup__close-button.css");
 @import url("../blocks/popup/__form/popup__form.css");
 @import url("../blocks/popup/__form-field/popup__form-field.css");
-@import url("../blocks/popup/__form-field/_name/popup__form-field_name.css");
-@import url("../blocks/popup/__form-field/_occupation/popup__form-field_occupation.css");
+@import url("../blocks/popup/__form-field/_type/_name/popup__form-field_type_name.css");
+@import url("../blocks/popup/__form-field/_type/_occupation/popup__form-field_type_occupation.css");
 @import url("../blocks/popup/__submit-button/popup__submit-button.css");
 @import url("../blocks/popup/_visible/popup_visible.css");

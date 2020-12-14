@@ -11,6 +11,6 @@
         min-width: 1100px;
         max-width: 1600px;
         margin: 0 auto;
-        font-family: "Inter Font", Arial, Helvetica, sans-serif;
+        padding: 0;
     }
 }

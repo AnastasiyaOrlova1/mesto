@@ -9,6 +9,7 @@
     background-size: cover;
     align-self: center;
     background-position: center;
+    cursor: pointer;
 }
 
 .element__like-button:hover {
