@@ -1,0 +1,13 @@
+.popup-image__pic{
+  /* width: 75vw;
+   height: 75vw;*/
+   
+   /*justify-content: center;
+   position: fixed;*/
+    z-index: 2;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75vw;
+    max-height: 75vh;
+}
