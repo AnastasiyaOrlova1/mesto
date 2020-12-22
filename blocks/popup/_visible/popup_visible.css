@@ -1,5 +1,7 @@
 .popup_visible {
     display: flex;
+    visibility: visible;
     align-content: center;
     justify-content: center;
+    opacity: 1;
 }

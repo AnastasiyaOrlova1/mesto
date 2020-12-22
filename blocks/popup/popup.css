@@ -7,6 +7,10 @@
     align-items: center;
     left: 0;
     top: 0;
-    display: none;
+    /*display: none;*/
+    visibility: hidden;
     background-color: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: visibility 1s, opacity 1s linear;
+    display: inline-flex;
 }
