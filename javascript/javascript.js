@@ -104,19 +104,15 @@ function composeItem({name, link}) {
     const cardName = newCard.querySelector('.element__text');
     const cardImage = newCard.querySelector('.element__photo');
     const elementLikeButton = newCard.querySelector('.element__like-button');
-    console.log(elementLikeButton);
     
-   /* name === caption*/
+    
     cardImage.src = link;
     cardName.textContent = name;
-
-    /*popupPicCaption.textContent = caption;*/
     
     const removeButton = newCard.querySelector('.element__delete-button');
     removeButton.addEventListener('click', removeItem);
 
-    /*popupPic.src = link;
-    popupPic.alt = name;*/
+
     cardImage.addEventListener('click', function() {
         openImagePopup({name,link});
     });
