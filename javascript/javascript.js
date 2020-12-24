@@ -7,11 +7,11 @@ const popupNode = document.querySelector('.popup');
 const popupEditCloseBtn = document.querySelector('#edit-close');
 const popupAddCloseBtn = document.querySelector('#add-close');
 const popupImageCloseBtn = document.querySelector('#image-close');
-let profileNameNode = document.querySelector('.profile__personal-info-name');
-let profileOccupationNode = document.querySelector('.profile__personal-info-occupation');
+const profileNameNode = document.querySelector('.profile__personal-info-name');
+const profileOccupationNode = document.querySelector('.profile__personal-info-occupation');
 const popupFormNode = document.querySelector('.popup__form');
-let popupFormFieldNameNode = document.querySelector('.popup__form-field_type_name');
-let popupFormFieldOccupationNode = document.querySelector('.popup__form-field_type_occupation');
+const popupFormFieldNameNode = document.querySelector('.popup__form-field_type_name');
+const popupFormFieldOccupationNode = document.querySelector('.popup__form-field_type_occupation');
 const body = document.querySelector('.body');
 
 
@@ -58,23 +58,13 @@ const initialCards = [
 ]; 
 
 const submitButton = document.querySelector('popup__submit-button');
-/*const elementLikeButton = newCard.querySelector('.element__like-button');*/
 
-function /*handleEditButtonNode*/openPopup(modal) {
-    /*const targetOpenBtn = evt.target;
-    if (targetOpenBtn.classList.contains)*/
+
+function openPopup(modal) {
+  
     modal.classList.add('popup_visible'); //сделать окно попап видимым, добавив ему класс, меняющий display:none на display:flex
-    /*popupFormFieldNameNode.value = profileNameNode.textContent; //присвоение полям формы значения имени в профиле
-    popupFormFieldOccupationNode.value = profileOccupationNode.textContent; *///присвоение полям формы значения рода занятия в профиле
+    
 }
-
-/*function handleCloseButtonNodeclosePopup(evt) {
-    const targetCloseBtn = evt.target;
-    if (targetCloseBtn.classList.contains('popup__close-button')){
-        targetCloseBtn.closest('.popup').classList.remove('popup_visible');
-    };
-    popupNode.classList.remove('popup_visible'); //сделать попап невидимым при нажатии на кнопку закрытия окна попапа
-};*/
 
 function closePopup(modal) {
     modal.classList.remove('popup_visible');
@@ -87,11 +77,6 @@ function handlePopupFormSubmitNode(event) {
     closePopup(popupNode);
 }
 
-/*function handleAddButtonNode() {                        
-    const popupCardNode = document.querySelector('.popup-card');
-    
-    popupCardNode.classList.add('popup_visible');
-}*/
 
 function renderContainerElements() {
     const elementContainerItems = initialCards.map(composeItem);
@@ -108,6 +93,7 @@ function composeItem({name, link}) {
     
     cardImage.src = link;
     cardName.textContent = name;
+    cardImage.alt = name;
     
     const removeButton = newCard.querySelector('.element__delete-button');
     removeButton.addEventListener('click', removeItem);
@@ -116,10 +102,6 @@ function composeItem({name, link}) {
     cardImage.addEventListener('click', function() {
         openImagePopup({name,link});
     });
-
-    /*function handleLikeButton() {
-        elementLikeButton.classList.toggle('element__like-button_active');
-    };*/
     
     function handleLikeButton() {
         elementLikeButton.classList.toggle('element__like-button_active');
@@ -137,33 +119,29 @@ function handleLikeButton() {
 };
 
 function openImagePopup(item) {
-    /*const popupPicCaption = document.querySelector('popup-image__caption');*/
     popupPicCaption.textContent = item.name;
     popupPic.src = item.link;
     popupPic.alt = item.name;
 
-    /*popupPicCaption.textContent = item.name;*/
     openPopup(popupImageContainer);
     
 }
 
 function removeItem(event) {
-    const targetElement = event.target;
+    /*const targetElement = event.target;
     const targetItem = targetElement.closest('.element');
     
-    targetItem.remove();
+    targetItem.remove();*/
+    event.target.closest('.element').remove();
 };
 
 function addNewCard(e) {
     e.preventDefault();
-    const inputPlace = popupFormFieldPlaceNode.value;
-    const inputLink = popupFormFieldLinkNode.value;
-    const newItemCard = composeItem({name: inputPlace, link: inputLink});
+    const newItemCard = composeItem({name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value});
     containerElements.prepend(newItemCard);
     closePopup(popupCardNode);
-    inputPlace.value = '';
-    inputLink.value = '';
-    
+    popupFormFieldPlaceNode.value = '';
+    popupFormFieldLinkNode.value = '';
 }
 
 
@@ -173,7 +151,7 @@ popupCardNode.addEventListener('submit', addNewCard);
 
  
 
-editButtonNode.addEventListener('click', /*handleEditButtonNode*/function() {
+editButtonNode.addEventListener('click', function() {
     popupFormFieldNameNode.value = profileNameNode.textContent; //присвоение полям формы значения имени в профиле
     popupFormFieldOccupationNode.value = profileOccupationNode.textContent; //присвоение полям формы значения рода занятия в профиле
     openPopup(popupNode);
@@ -181,10 +159,10 @@ editButtonNode.addEventListener('click', /*handleEditButtonNode*/function() {
 /*closeButtonNode*/popupEditCloseBtn.addEventListener('click', /*handleCloseButtonNode*/function() 
 {closePopup(popupNode)
 });
-popupAddCloseBtn.addEventListener('click', /*handleCloseButtonNode*/function() 
+popupAddCloseBtn.addEventListener('click', function() 
 {closePopup(popupCardNode);
 });
-popupImageCloseBtn.addEventListener('click', /*handleCloseButtonNode*/function() 
+popupImageCloseBtn.addEventListener('click', function() 
 {closePopup(popupImageContainer);
 });
 popupFormNode.addEventListener('submit', handlePopupFormSubmitNode);

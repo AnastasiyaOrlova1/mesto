@@ -35,8 +35,8 @@
                     <button class="popup__close-button" id="edit-close" type="button"></button>
                     <h2 class="popup__title">Редактировать профиль</h2>
                     <form class="popup__form" name="popupform">
-                        <input type="text" name="formname" class="popup__form-field popup__form-field_type_name" value="Жак-Ив-Кусто" />
-                        <input type="text" name="formoccupation" class="popup__form-field popup__form-field_type_occupation" value="Исследователь океана">
+                        <input type="text" name="formname" class="popup__form-field popup__form-field_type_name" placeholder="Жак-Ив-Кусто" />
+                        <input type="text" name="formoccupation" class="popup__form-field popup__form-field_type_occupation" placeholder="Исследователь океана">
                         <button class="popup__submit-button" type="submit">Сохранить</button>
                     </form>
                 </div>
@@ -46,8 +46,8 @@
                     <button class="popup__close-button" id="add-close" type="button"></button>
                     <h2 class="popup__title">Новое место</h2>
                     <form class="popup__form" name="popupform">
-                        <input type="text" name="formname" class="popup__form-field popup__form-field_type_place" placeholder="Название">
-                        <input type="text" name="formoccupation" class="popup__form-field popup__form-field_type_link" placeholder="Ссылка на картинку">
+                        <input type="text" name="formplace" class="popup__form-field popup__form-field_type_place" placeholder="Название">
+                        <input type="url" name="formlink" class="popup__form-field popup__form-field_type_link" required placeholder="Ссылка на картинку">
                         <button class="popup__submit-button" type="submit">Сохранить</button>
                     </form>
                 </div>
@@ -63,7 +63,7 @@
         <template>
             <div class="element">
                 <button class="element__delete-button" type="button"></button>
-                <img class="element__photo" src="/." alt="Изображение" />
+                <img class="element__photo" src="/." alt="/." />
                 <div class="element__describe">
                     <h2 class="element__text"></h2>
                     <button class="element__like-button" type="button"></button>
