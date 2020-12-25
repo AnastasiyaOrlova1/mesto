@@ -12,3 +12,7 @@
     z-index: 1;
     cursor: pointer;
 }
+
+.element__delete-button:hover {
+    opacity: .6;
+}

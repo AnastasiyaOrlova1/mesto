@@ -22,8 +22,8 @@ const popupImageContainer = document.querySelector('.popup-image');
 const popupPic = popupImageContainer.querySelector('.popup-image__pic');
 const popupPicCaption = popupImageContainer.querySelector('.popup-image__caption');
 const popupCardNode = document.querySelector('.popup-cards');
-let popupFormFieldPlaceNode = document.querySelector('.popup__form-field_type_place');
-let popupFormFieldLinkNode = document.querySelector('.popup__form-field_type_link');
+const popupFormFieldPlaceNode = document.querySelector('.popup__form-field_type_place');
+const popupFormFieldLinkNode = document.querySelector('.popup__form-field_type_link');
 
 
 
