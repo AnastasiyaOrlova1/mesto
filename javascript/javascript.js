@@ -25,12 +25,14 @@ function openPopup(modal) {
 
     modal.classList.add('popup_visible'); //сделать окно попап видимым, добавив ему класс, меняющий display:none на display:flex
     document.addEventListener('keydown', closePopupByEsc);
+    document.addEventListener('click', closePopupByOverlay);
 
 }
 
 function closePopup(modal) {
     modal.classList.remove('popup_visible');
-   /*document.removeEventListener('keydown', closePopupByEsc);*/
+    document.removeEventListener('keydown', closePopupByEsc);
+    document.removeEventListener('click', closePopupByOverlay); 
 }
 
 function handlePopupFormSubmitNode(event) {
@@ -40,12 +42,10 @@ function handlePopupFormSubmitNode(event) {
     closePopup(popupNode);
 }
 
-function closePopupByEsc() {
-    document.addEventListener('keydown', function (e) {
+function closePopupByEsc(e) {
         if (e.key === 'Escape') {
             closePopup(document.querySelector('.popup_visible'));
         }
-    })
 }
 
 function closePopupByOverlay(evt) {
@@ -150,5 +150,5 @@ addButtonNode.addEventListener('click', function () {
     openPopup(popupCardNode);
 })
 
-document.addEventListener('click', closePopupByOverlay);
+
 
