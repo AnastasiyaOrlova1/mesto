@@ -146,7 +146,6 @@ popupImageCloseBtn.addEventListener('click', function () {
 popupFormNode.addEventListener('submit', handlePopupFormSubmitNode);
 
 addButtonNode.addEventListener('click', function () {
-    const formAddPlace = document.querySelector('.popup__form_place');
     setButtonState(popupCardNode.querySelector('.popup__submit-button'), popupCardNode.querySelector('.popup__form').checkValidity(), validationConfig);
     openPopup(popupCardNode);
 })
