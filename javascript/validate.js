@@ -35,14 +35,14 @@ function setEventListener(form, config) {
         input.addEventListener('input', (evt) => {
             checkInputValidity(form, input, config)
             setButtonState(submitButton, form.checkValidity(), config)
-        })
+        });
     });
 }
 
 function enableValidation(config) {
     const forms = document.querySelectorAll(config.formSelector);
     forms.forEach(form => {
-        setEventListener(form, config)
+        setEventListener(form, config);
 
         form.addEventListener('submit', (evt) => {
             evt.preventDefault();
@@ -50,7 +50,7 @@ function enableValidation(config) {
 
         const submitButton = form.querySelector(config.submitButtonSelector);
         setButtonState(submitButton, form.checkValidity(), config);
-    })
+    });
 }
 
 const validationConfig = {
@@ -63,4 +63,3 @@ const validationConfig = {
 };
 
 enableValidation(validationConfig);
-
