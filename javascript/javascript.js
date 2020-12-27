@@ -1,12 +1,10 @@
 const editButtonNode = document.querySelector('.profile__edit-button');
 const addButtonNode = document.querySelector('.profile__add-button');
-const popupNode = document.querySelector('.popup');
 const popupEditCloseBtn = document.querySelector('#edit-close');
 const popupAddCloseBtn = document.querySelector('#add-close');
 const popupImageCloseBtn = document.querySelector('#image-close');
 const profileNameNode = document.querySelector('.profile__personal-info-name');
 const profileOccupationNode = document.querySelector('.profile__personal-info-occupation');
-const popupFormNode = document.querySelector('.popup__form');
 const popupFormFieldNameNode = document.querySelector('.popup__form-field_type_name');
 const popupFormFieldOccupationNode = document.querySelector('.popup__form-field_type_occupation');
 const containerElements = document.querySelector('.elements');
@@ -18,6 +16,8 @@ const popupCardNode = document.querySelector('.popup-cards');
 const popupFormFieldPlaceNode = document.querySelector('.popup__form-field_type_place');
 const popupFormFieldLinkNode = document.querySelector('.popup__form-field_type_link');
 const popupProfile = document.querySelector('.popup-profile');
+const popupFormPlace = document.querySelector('.popup__form_place');
+const popupFormProfile = document.querySelector('.popup__form_profile');
 
 
 
@@ -35,11 +35,11 @@ function closePopup(modal) {
     document.removeEventListener('click', closePopupByOverlay); 
 }
 
-function handlePopupFormSubmitNode(event) {
+function submitPopupProfileForm(event) {
     event.preventDefault();
     profileNameNode.textContent = popupFormFieldNameNode.value;
     profileOccupationNode.textContent = popupFormFieldOccupationNode.value;
-    closePopup(popupNode);
+    closePopup(popupProfile);
 }
 
 function closePopupByEsc(e) {
@@ -49,10 +49,9 @@ function closePopupByEsc(e) {
 }
 
 function closePopupByOverlay(evt) {
-
-    const targetCloseBtn = evt.target;
-    if (targetCloseBtn.classList.contains('popup')) {
-        targetCloseBtn.closest('.popup').classList.remove('popup_visible');
+    if (evt.target.classList.contains('popup')) {
+        const popupInAction = document.querySelector('.popup_visible');
+        closePopup(popupInAction);
     };
 }
 
@@ -115,7 +114,7 @@ function addNewCard(e) {
     closePopup(popupCardNode);
      /*popupFormFieldPlaceNode.value = '';
     popupFormFieldLinkNode.value = '';*/
-    popupCardNode.querySelector('.popup__form_place').reset();
+    popupFormPlace.reset();
 }
 
 
@@ -126,29 +125,26 @@ editButtonNode.addEventListener('click', function () {
 
     popupFormFieldNameNode.value = profileNameNode.textContent; //присвоение полям формы значения имени в профиле
     popupFormFieldOccupationNode.value = profileOccupationNode.textContent; //присвоение полям формы значения рода занятия в профиле
-    setButtonState(popupProfile.querySelector('.popup__submit-button'), popupProfile.querySelector('.popup__form').checkValidity(), validationConfig);
-    openPopup(popupNode);
+    setButtonState(popupProfile.querySelector('.popup__submit-button'), popupFormProfile.checkValidity(), validationConfig);
+    openPopup(popupProfile);
 });
 
 popupEditCloseBtn.addEventListener('click', function () {
-    closePopup(popupNode)
+    closePopup(popupProfile)
 });
 
 popupAddCloseBtn.addEventListener('click', function () {
     closePopup(popupCardNode);
-    document.querySelector('.popup__form_place').reset();
+    popupFormPlace.reset();
 });
 
 popupImageCloseBtn.addEventListener('click', function () {
     closePopup(popupImageContainer);
 });
 
-popupFormNode.addEventListener('submit', handlePopupFormSubmitNode);
+popupFormProfile.addEventListener('submit', submitPopupProfileForm);
 
 addButtonNode.addEventListener('click', function () {
-    setButtonState(popupCardNode.querySelector('.popup__submit-button'), popupCardNode.querySelector('.popup__form').checkValidity(), validationConfig);
+    setButtonState(popupCardNode.querySelector('.popup__submit-button'), popupFormPlace.checkValidity(), validationConfig);
     openPopup(popupCardNode);
 })
-
-
-

@@ -9,3 +9,7 @@
 .element:first-of-type {
   margin-top: 0px;
 }
+
+.element:hover {
+    cursor: pointer;
+}
