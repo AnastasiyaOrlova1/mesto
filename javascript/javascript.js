@@ -113,9 +113,12 @@ function addNewCard(e) {
     const newItemCard = composeItem({ name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value });
     containerElements.prepend(newItemCard);
     closePopup(popupCardNode);
-    popupFormFieldPlaceNode.value = '';
-    popupFormFieldLinkNode.value = '';
+     /*popupFormFieldPlaceNode.value = '';
+    popupFormFieldLinkNode.value = '';*/
+    popupCardNode.querySelector('.popup__form_place').reset();
 }
+
+
 
 popupCardNode.addEventListener('submit', addNewCard);
 
@@ -133,6 +136,7 @@ popupEditCloseBtn.addEventListener('click', function () {
 
 popupAddCloseBtn.addEventListener('click', function () {
     closePopup(popupCardNode);
+    document.querySelector('.popup__form_place').reset();
 });
 
 popupImageCloseBtn.addEventListener('click', function () {
