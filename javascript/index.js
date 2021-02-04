@@ -1,3 +1,9 @@
+import Validation from './FormValidation.js';
+import { validationConfig } from './FormValidation.js';
+import Card from './Card.js';
+import { initialCards } from './initialCards.js';
+
+
 const editButtonNode = document.querySelector('.profile__edit-button');
 const addButtonNode = document.querySelector('.profile__add-button');
 const popupEditCloseBtn = document.querySelector('#edit-close');
@@ -19,7 +25,27 @@ const popupProfile = document.querySelector('.popup-profile');
 const popupFormPlace = document.querySelector('.popup__form_place');
 const popupFormProfile = document.querySelector('.popup__form_profile');
 
+/*const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-field',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_invalid',
+    inputErrorClass: 'popup__form-field_state_invalid',
+    errorClass: 'popup__form-field-error'
+};*/
 
+console.log(document.querySelector('template'));
+
+const validationFormAdd = new Validation(validationConfig, '.popup__form_place');
+validationFormAdd.enableValidation();
+const validationFormEditProfile = new Validation(validationConfig, '.popup__form_profile');
+validationFormEditProfile.enableValidation();
+
+initialCards.forEach((item) => {
+    const card = new Card(item, 'template', openImagePopup).renderCard();
+    containerElements.append(card);
+
+})
 
 function openPopup(modal) {
 
@@ -32,7 +58,7 @@ function openPopup(modal) {
 function closePopup(modal) {
     modal.classList.remove('popup_visible');
     document.removeEventListener('keydown', closePopupByEsc);
-    document.removeEventListener('click', closePopupByOverlay); 
+    document.removeEventListener('click', closePopupByOverlay);
 }
 
 function submitPopupProfileForm(event) {
@@ -43,9 +69,9 @@ function submitPopupProfileForm(event) {
 }
 
 function closePopupByEsc(e) {
-        if (e.key === 'Escape') {
-            closePopup(document.querySelector('.popup_visible'));
-        }
+    if (e.key === 'Escape') {
+        closePopup(document.querySelector('.popup_visible'));
+    }
 }
 
 function closePopupByOverlay(evt) {
@@ -90,9 +116,9 @@ function composeItem({ name, link }) {
 
 renderContainerElements();
 
-function handleLikeButton() {
+/*function handleLikeButton() {
     elementLikeButton.classList.toggle('element__like-button_active');
-};
+};*/
 
 function openImagePopup(item) {
     popupPicCaption.textContent = item.name;
@@ -112,9 +138,11 @@ function addNewCard(e) {
     const newItemCard = composeItem({ name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value });
     containerElements.prepend(newItemCard);
     closePopup(popupCardNode);
-     /*popupFormFieldPlaceNode.value = '';
-    popupFormFieldLinkNode.value = '';*/
+    /*popupFormFieldPlaceNode.value = '';
+   popupFormFieldLinkNode.value = '';*/
     popupFormPlace.reset();
+
+
 }
 
 
@@ -125,7 +153,9 @@ editButtonNode.addEventListener('click', function () {
 
     popupFormFieldNameNode.value = profileNameNode.textContent; //присвоение полям формы значения имени в профиле
     popupFormFieldOccupationNode.value = profileOccupationNode.textContent; //присвоение полям формы значения рода занятия в профиле
-    setButtonState(popupProfile.querySelector('.popup__submit-button'), popupFormProfile.checkValidity(), validationConfig);
+    /*setButtonState(popupProfile.querySelector('.popup__submit-button'), popupFormProfile.checkValidity(), validationConfig);*/
+    validationFormEditProfile.setButtonState(popupFormProfile.checkValidity());
+    validationFormEditProfile.clearErrorInputs();
     openPopup(popupProfile);
 });
 
@@ -145,6 +175,8 @@ popupImageCloseBtn.addEventListener('click', function () {
 popupFormProfile.addEventListener('submit', submitPopupProfileForm);
 
 addButtonNode.addEventListener('click', function () {
-    setButtonState(popupCardNode.querySelector('.popup__submit-button'), popupFormPlace.checkValidity(), validationConfig);
+    /*setButtonState(popupCardNode.querySelector('.popup__submit-button'), popupFormPlace.checkValidity(), validationConfig);*/
+    validationFormAdd.setButtonState(popupFormPlace.checkValidity());
+    validationFormAdd.clearErrorInputs();
     openPopup(popupCardNode);
 })

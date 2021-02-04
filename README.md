@@ -11,6 +11,7 @@
 4. Grid-layout.
 5. Создание попап(popup) окон с помощью Java Script.
 6. Создание и управление элементами страницы через Java Script.
+7. Частично код выполнен в парадигие ООП.
 
 **Ссылка на сайт**
 [https://anastasiyaorlova1.github.io/mesto/index.html]
