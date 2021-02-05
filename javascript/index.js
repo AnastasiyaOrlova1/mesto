@@ -34,7 +34,7 @@ const popupFormProfile = document.querySelector('.popup__form_profile');
     errorClass: 'popup__form-field-error'
 };*/
 
-console.log(document.querySelector('template'));
+
 
 const validationFormAdd = new Validation(validationConfig, '.popup__form_place');
 validationFormAdd.enableValidation();
@@ -81,12 +81,12 @@ function closePopupByOverlay(evt) {
     };
 }
 
-function renderContainerElements() {
+/*function renderContainerElements() {
     const elementContainerItems = initialCards.map(composeItem);
     containerElements.append(...elementContainerItems);
-}
+}*/
 
-function composeItem({ name, link }) {
+/*function composeItem({ name, link }) {
     const newCard = templateElement.content.cloneNode(true);
     const cardName = newCard.querySelector('.element__text');
     const cardImage = newCard.querySelector('.element__photo');
@@ -103,18 +103,18 @@ function composeItem({ name, link }) {
 
     cardImage.addEventListener('click', function () {
         openImagePopup({ name, link });
-    });
+    });*/
 
-    function handleLikeButton() {
+    /*function handleLikeButton() {
         elementLikeButton.classList.toggle('element__like-button_active');
 
     };
     elementLikeButton.addEventListener('click', handleLikeButton);
     return newCard;
 
-};
+};*/
 
-renderContainerElements();
+/*renderContainerElements();
 
 /*function handleLikeButton() {
     elementLikeButton.classList.toggle('element__like-button_active');
@@ -135,12 +135,16 @@ function removeItem(event) {
 
 function addNewCard(e) {
     e.preventDefault();
-    const newItemCard = composeItem({ name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value });
+    /*const newItemCard = composeItem({ name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value });
+    containerElements.prepend(newItemCard);
+    closePopup(popupCardNode);*/
+    const card = new Card({ name: popupFormFieldPlaceNode.value, link: popupFormFieldLinkNode.value }, 'template', openImagePopup);
+    const newItemCard = card.renderCard();
     containerElements.prepend(newItemCard);
     closePopup(popupCardNode);
     /*popupFormFieldPlaceNode.value = '';
    popupFormFieldLinkNode.value = '';*/
-    popupFormPlace.reset();
+    /*popupFormPlace.reset();*/
 
 
 }
