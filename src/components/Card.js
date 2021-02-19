@@ -1,11 +1,12 @@
 export default class Card {
-  constructor(cardData, templateSelector, openImagePopup) {
+  constructor({cardData, handleCardClick}, templateSelector) {
     this._cardData = cardData;
     this._link = cardData.link;
     this._name = cardData.name;
     this._src = cardData.src;
     this._templateSelector = templateSelector;
-    this._openImagePopup = openImagePopup;
+    /*this._openImagePopup = openImagePopup;*/
+    this._handleCardClick = handleCardClick;
     /*this._card = null;*/
   }
 
@@ -22,9 +23,7 @@ export default class Card {
     this._card = this._getTemplate();
     this._image = this._card.querySelector(".element__photo");
 
-    this._card.querySelector(
-      ".element__text"
-    ).textContent = this._cardData.name;
+    this._card.querySelector(".element__text").textContent = this._cardData.name;
     this._image.src = this._cardData.link;
     this._image.alt = this._cardData.name;
 
@@ -48,7 +47,7 @@ export default class Card {
     this._card
       .querySelector(".element__photo")
       .addEventListener("click", () => {
-        this._openImagePopup({ name: this._name, link: this._link });
+        this._handleCardClick({ name: this._name, link: this._link });
       });
   }
 
@@ -68,7 +67,7 @@ export default class Card {
     this.__card
       .querySelector(".element__photo")
       .addEventListener("click", () => {
-        this._openImagePopup({ name: this._name, link: this._link });
+        this._handleCardClick({ name: this._name, link: this._link });
       });
   }
 
