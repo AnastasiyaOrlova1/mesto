@@ -63,6 +63,8 @@ export default class Validation {
     });
 
     this.setButtonState(this._formElement.checkValidity());
+
+
     /* });*/
   }
 

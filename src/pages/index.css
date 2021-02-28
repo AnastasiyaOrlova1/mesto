@@ -43,3 +43,9 @@
 @import url("../blocks/popup/__form-field/_state/popup__form-field_state_invalid.css");
 @import url("../blocks/popup/__submit-button/_invalid/popup__submit-button_invalid.css");
 @import url("../blocks/popup/__form-field-error/popup__form-field-error.css");
+@import url("../blocks/profile/__avatar-changing-button/profile__avatar-changing-button.css");
+@import url("../blocks/element/__like-section/element__like-section.css");
+@import url("../blocks/element/__like-counter/element__like-counter.css");
+@import url("../blocks/popup-avatar/popup-avatar.css");
+@import url("../blocks/popup-delete/popup-delete.css");
+@import url("../blocks/popup/__form/_avatar/popup__form_avatar.css");

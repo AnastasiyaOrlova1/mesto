@@ -1,5 +1,6 @@
 .element__like-button {
-    margin-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
     background-image: url('../../../images/vectorlikewhite.svg');
     border:0;
     padding: 0;
@@ -7,9 +8,10 @@
     height: 18px;
     background-color: transparent;
     background-size: cover;
-    align-self: center;
+    /*align-self: center;*/
     background-position: center;
     cursor: pointer;
+    margin-top: 22px;
 }
 
 .element__like-button:hover {

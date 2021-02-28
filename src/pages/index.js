@@ -5,20 +5,24 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+import PopupDeleteRequest from "../components/PopupDeleteRequest.js";
+import {
+  editButtonNode,
+  addButtonNode,
+  profileNameNode,
+  popupFormFieldNameNode,
+  popupFormFieldOccupationNode,
+  popupCardNode,
+  popupFormPlace,
+  popupFormProfile,
+  deleteCardPopup,
+  avatarButton,
+  popupAvatarForm,
+} from "../utils/constants.js";
 import "./index.css";
 
-const editButtonNode = document.querySelector(".profile__edit-button");
-const addButtonNode = document.querySelector(".profile__add-button");
-const profileNameNode = document.querySelector(".profile__personal-info-name");
-const popupFormFieldNameNode = document.querySelector(
-  ".popup__form-field_type_name"
-);
-const popupFormFieldOccupationNode = document.querySelector(
-  ".popup__form-field_type_occupation"
-);
-const popupCardNode = document.querySelector(".popup-cards");
-const popupFormPlace = document.querySelector(".popup__form_place");
-const popupFormProfile = document.querySelector(".popup__form_profile");
+let userId = null;
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -28,22 +32,80 @@ const validationConfig = {
   inputErrorClass: "popup__form-field_state_invalid",
   errorClass: "popup__form-field-error",
 };
+
+const config = {
+  url: "https://mesto.nomoreparties.co/v1/",
+  headers: {
+    authorization: "718b104b-a109-4f8a-85ef-b777bb683796",
+    "Content-Type": "application/json",
+  },
+  groupId: "cohort-20/",
+};
+
+const api = new Api(config);
+
+api
+  .getCards()
+  .then((res) => {
+    cardList.renderItems(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+api
+  .getUserProfileInfo()
+  .then((dataUser) => {
+    console.log(dataUser);
+    userId = dataUser._id;
+    userInfo.setUserInfo(dataUser.name, dataUser.about, dataUser.avatar);
+    userInfo.updateUserInfo();
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    editFormPopup.renderLoading(false);
+  });
+
 const userInfo = new UserInfo({
   userNameSelector: ".profile__personal-info-name",
   userOccupationSelector: ".profile__personal-info-occupation",
+  userAvatarSelector: ".profile__avatar",
 });
 
-console.log(profileNameNode);
-
-function addNewCard(cardData) {
+function addNewCard(item) {
   /*e.preventDefault();*/
-  const card = new Card({ cardData, handleCardClick }, "template");
+  const card = new Card(
+    {
+      cardData: { ...item, userId },
+      handleCardClick: handleCardClick,
+      handleDeleteClick: (cardData, element) => {
+        console.log(cardData);
+        deletePopup.open();
+        deletePopup.setActionSubmit(() => {
+          api
+            .deleteCard(cardData)
+            .then(() => {
+              element.remove();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      },
+    },
+
+    "template",
+    api
+  );
+
   const cardItem = card.renderCard();
   return cardItem;
 }
 
-function handleCardClick(data) {
-  popupImg.open(data);
+function handleCardClick(item) {
+  popupImg.open(item);
 }
 
 const popupImg = new PopupWithImage(".popup-image");
@@ -51,38 +113,78 @@ popupImg.setEventListeners();
 
 const cardList = new Section(
   {
-    items: initialCards,
     renderer: (data) => {
       const card = addNewCard(data);
-      insertNewCard(card);
+      cardList.addItem(card);
     },
   },
   ".elements"
 );
 
-function insertNewCard(data) {
-  cardList.addItem(data);
-}
+const deletePopup = new PopupDeleteRequest(".popup-delete");
 
-cardList.renderItems();
+deletePopup.setEventListeners();
 
 const newFormPopup = new PopupWithForm({
   popupSelect: ".popup-cards",
   formSubmit: (data) => {
-    const card = addNewCard(data);
-    insertNewCard(card);
+    newFormPopup.renderLoading(false);
+    api
+      .addNewCard(data)
+      .then((data) => {
+        cardList.addItem(addNewCard(data), true);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        newFormPopup.renderLoading(true);
+      });
   },
 });
+
 newFormPopup.setEventListeners();
 
 const editFormPopup = new PopupWithForm({
   popupSelect: ".popup-profile",
   formSubmit: (data) => {
-    userInfo.setUserInfo(data.name, data.occupation);
+    editFormPopup.renderLoading(false);
+    api
+      .editUserProfile(data)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+        userInfo.updateUserInfo();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        editFormPopup.renderLoading(true);
+      });
   },
 });
 
 editFormPopup.setEventListeners();
+
+const avatarPopup = new PopupWithForm({
+  popupSelect: ".popup-avatar",
+  formSubmit: (data) => {
+    avatarPopup.renderLoading(false);
+    api
+      .updateAvatar(data)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+        userInfo.updateUserInfo();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        avatarPopup.renderLoading(true);
+      });
+  },
+});
+avatarPopup.setEventListeners();
 
 const validationFormAdd = new Validation(
   validationConfig,
@@ -95,12 +197,16 @@ const validationFormEditProfile = new Validation(
 );
 validationFormEditProfile.enableValidation();
 
-popupCardNode.addEventListener("submit", addNewCard);
+const validationAvatarPopup = new Validation(
+  validationConfig,
+  ".popup__form_avatar"
+);
+validationAvatarPopup.enableValidation();
 
 editButtonNode.addEventListener("click", () => {
-  const getUserInfo = userInfo.getUserInfo();
-  popupFormFieldNameNode.value = getUserInfo.userName;
-  popupFormFieldOccupationNode.value = getUserInfo.aboutMe;
+  const infoAboutUser = userInfo.getUserInfo();
+  popupFormFieldNameNode.value = infoAboutUser.name;
+  popupFormFieldOccupationNode.value = infoAboutUser.about;
   validationFormEditProfile.setButtonState(popupFormProfile.checkValidity());
   validationFormEditProfile.clearErrorInputs();
   editFormPopup.open();
@@ -110,4 +216,10 @@ addButtonNode.addEventListener("click", () => {
   newFormPopup.open();
   validationFormAdd.setButtonState(popupFormPlace.checkValidity());
   validationFormAdd.clearErrorInputs();
+});
+
+avatarButton.addEventListener("click", () => {
+  validationAvatarPopup.setButtonState(popupAvatarForm.checkValidity());
+  validationFormEditProfile.clearErrorInputs();
+  avatarPopup.open();
 });
