@@ -1,5 +1,3 @@
-
-
 export default class Card {
   constructor({ cardData, handleCardClick, handleDeleteClick }, templateSelector, api) {
     this._cardData = cardData;
@@ -125,6 +123,9 @@ export default class Card {
         this._likes = res.likes.length;
         this._likeCounter.textContent = this._likes;
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   _handleDeleteLike() {
@@ -134,6 +135,9 @@ export default class Card {
         this._likes = res.likes.length;
         this._likeCounter.textContent = this._likes;
       })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 

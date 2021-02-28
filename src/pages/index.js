@@ -22,6 +22,7 @@ import {
 } from "../utils/constants.js";
 import "./index.css";
 
+
 let userId = null;
 
 const validationConfig = {
@@ -44,29 +45,16 @@ const config = {
 
 const api = new Api(config);
 
-api
-  .getCards()
-  .then((res) => {
-    cardList.renderItems(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getUserProfileInfo()
-  .then((dataUser) => {
-    console.log(dataUser);
-    userId = dataUser._id;
-    userInfo.setUserInfo(dataUser.name, dataUser.about, dataUser.avatar);
-    userInfo.updateUserInfo();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    editFormPopup.renderLoading(false);
-  });
+api.getAllInfo()
+.then(([dataUser, cards]) => {
+  userId = dataUser._id;
+  userInfo.setUserInfo(dataUser.name, dataUser.about, dataUser.avatar);
+  userInfo.updateUserInfo();
+  cardList.renderItems(cards);
+})
+.catch((err) => {
+  console.log(err);
+});
 
 const userInfo = new UserInfo({
   userNameSelector: ".profile__personal-info-name",

@@ -5,6 +5,10 @@ export default class Api {
     this._groupId = groupId;
   }
 
+  getAllInfo(){
+    return Promise.all([this.getUserProfileInfo(), this.getCards()])
+    } 
+  
   getCards() {
     return fetch(`${this._url}${this._groupId}cards`, {
       headers: this._headers,

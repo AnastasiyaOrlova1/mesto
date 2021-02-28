@@ -1,4 +1,5 @@
 .popup-avatar {
   align-self: center;
-
+  min-height: auto;
 }
+
